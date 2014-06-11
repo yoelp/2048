@@ -38,10 +38,10 @@ var game = function(){
 				}
 			}
 			for(i=0;i<fill;i++)randomFill();
-			console.log(this.board)
 		},
 		move : function(side){
-			if(!/[LURD]/.test(side))return false;
+			if(!/[LURD]/.test(side))
+				throw  SyntaxError("This function only accepts the values R,L,U,D. I got \""+side+"\", and thats a problem.");;
 			var mv = {};
 			mv[side] = true;
 			var i,j, mvd = false;
@@ -85,7 +85,11 @@ var game = function(){
 					}
 				}
 			}
-			if(mvd)return randomFill();
+			if(mvd){
+				randomFill();
+			}else{
+				checkGame();
+			}
 		}
 	};
 	return g;
