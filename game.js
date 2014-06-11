@@ -71,8 +71,8 @@ var game = function(){
 						while(this.board[i+v] && this.board[i+v][j+h]){
 							if(this.board[i][j] === this.board[i+v][j+h]){
 								this.board[i][j] *= 2;
-								points += this.board[i][j];
-								this.ref[i*len+j] = true;
+								this.points += this.board[i][j];
+								ref[i*len+j] = true;
 								this.board[i+v][j+h] = -1;
 								ref[((i+v)*len)+(j+h)] = false;
 								mvd = true;
