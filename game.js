@@ -5,7 +5,7 @@ var game = function(){
 		return arr[Math.floor(Math.random()*arr.length)];
 	},
 	checkGame = function(){
-		//TODO check game status
+		g.status  = (ref.indexOf(false) !== -1) || g.move("R",true) || g.move("L",true) || g.move("U",true) || g.move("D",true) ? 1 : 0;
 	},
 	randomFill = function(){
 		var rand = Math.floor(Math.random()*ref.length);
@@ -15,9 +15,7 @@ var game = function(){
 		}else{
 			return randomFill();
 		}
-		if(ref.indexOf(false) === -1){
-			checkGame();
-		}
+		if(ref.indexOf(false) === -1)checkGame();
 	},
 	len = 4,
 	ref = [],
@@ -34,14 +32,14 @@ var game = function(){
 			for (i in this.board){
 				for (j = 0; j < len; j++){
 					this.board[i][j] = -1;
-					ref.push(false)
+					ref.push(false);
 				}
 			}
 			for(i=0;i<fill;i++)randomFill();
 		},
-		move : function(side){
+		move : function(side,ck){
 			if(!/[LURD]/.test(side))
-				throw  SyntaxError("This function only accepts the values R,L,U,D. I got \""+side+"\", and thats a problem.");;
+				throw  SyntaxError("This function only accepts the values R,L,U,D. I got \""+side+"\", and thats a problem.");
 			var mv = {};
 			mv[side] = true;
 			var i,j, mvd = false;
@@ -58,6 +56,7 @@ var game = function(){
 								ref[i*len+j] = true;
 								this.board[i+v][j+h] = -1;
 								ref[((i+v)*len)+(j+h)] = false;
+								if(ck)return true;
 								mvd = true;
 								break;
 							}
@@ -75,6 +74,7 @@ var game = function(){
 								ref[i*len+j] = true;
 								this.board[i+v][j+h] = -1;
 								ref[((i+v)*len)+(j+h)] = false;
+								if(ck)return true;
 								mvd = true;
 								break;
 							}
@@ -85,12 +85,9 @@ var game = function(){
 					}
 				}
 			}
-			if(mvd){
-				randomFill();
-			}else{
-				checkGame();
-			}
+			if(mvd)randomFill();
+			else if(ck)return false;
 		}
 	};
 	return g;
-}
+};
