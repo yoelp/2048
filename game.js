@@ -17,19 +17,18 @@ var game = function(){
 		}
 		if(ref.indexOf(false) === -1)checkGame();
 	},
-	len = 4,
+	len,
 	ref = [],
 	g = {
 		status : 1,
 		points : 0,
 		board :[],
+		direction : "",
 		init : function(size,fill){
-			len = 4 || size;
+			len = size || 4;
 			this.board = new Array(len);
 			for (i=0;i<len;i++){
 				this.board[i] = new Array(len);
-			}
-			for (i in this.board){
 				for (j = 0; j < len; j++){
 					this.board[i][j] = -1;
 					ref.push(false);
@@ -40,6 +39,7 @@ var game = function(){
 		move : function(side,ck){
 			if(!/[LURD]/.test(side))
 				throw  SyntaxError("This function only accepts the values R,L,U,D. I got \""+side+"\", and thats a problem.");
+			this.direction = side;
 			var mv = {};
 			mv[side] = true;
 			var i,j, mvd = false;
@@ -56,7 +56,6 @@ var game = function(){
 								ref[i*len+j] = true;
 								this.board[i+v][j+h] = -1;
 								ref[((i+v)*len)+(j+h)] = false;
-								if(ck)return true;
 								mvd = true;
 								break;
 							}
@@ -69,12 +68,12 @@ var game = function(){
 						v = mv.U ? 1 : mv.D ?  -1 : 0;
 						while(this.board[i+v] && this.board[i+v][j+h]){
 							if(this.board[i][j] === this.board[i+v][j+h]){
+								if(ck)return true;
 								this.board[i][j] *= 2;
 								this.points += this.board[i][j];
 								ref[i*len+j] = true;
 								this.board[i+v][j+h] = -1;
 								ref[((i+v)*len)+(j+h)] = false;
-								if(ck)return true;
 								mvd = true;
 								break;
 							}
