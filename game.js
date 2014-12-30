@@ -26,6 +26,7 @@ var game = function(){
 		direction : "",
 		init : function(size,fill){
 			len = size || 4;
+			if(typeof fill === "undefined") fill = 2;//if 0 leave it 
 			this.board = new Array(len);
 			for (i=0;i<len;i++){
 				this.board[i] = new Array(len);
