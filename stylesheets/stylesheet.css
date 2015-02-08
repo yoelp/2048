@@ -267,7 +267,7 @@ Full-Width Styles
 .inner {
   position: relative;
   max-width: 640px;
-  padding: 20px 10px;
+  padding: 10px 10px;
   margin: 0 auto;
 }
 
@@ -296,7 +296,7 @@ Full-Width Styles
 }
 
 #header_wrap .inner {
-  padding: 50px 10px 30px 10px;
+  padding: 2px 10px 12px 10px;
 }
 
 #project_title {
@@ -422,4 +422,45 @@ Small Device Styles
     font-size: 11px;
   }
 
+}
+
+#game{
+  width :80% ;
+  float: left;
+  max-height: 500px;
+}
+#game table{
+  background-color: rgba(238, 228, 218, 0.35);
+}
+#game td{
+  width: 75px;
+  height: 75px;
+  vertical-align: middle;
+  text-align: center;
+  border-color: #bbada0;
+  border-width: 16px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 30px;
+}
+#aside{
+  width: 20%;
+  float: right;
+}
+.clearfix {
+  overflow: auto;
+}
+
+.over{
+position: relative;
+left: 0;
+top: -480px;
+font-size: 28px;
+font-weight: bold;
+text-align: center;
+width: 460px;
+background-color: rgba(240,240,240,.6);
+height: 460px;
+vertical-align: middle;
+line-height: 460px;
 }
